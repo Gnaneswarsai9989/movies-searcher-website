@@ -1,0 +1,293 @@
+/* ===============================
+   BACKGROUND AMBIENT LIGHT
+================================ */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+               "Segoe UI", sans-serif;
+  background: radial-gradient(circle at 50% 0%, #1f1f21, #000000);
+  color: #f5f5f7;
+  overflow-x: hidden;
+}
+
+/* Subtle ambient glow */
+body::before {
+  content: "";
+  position: fixed;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent);
+  filter: blur(120px);
+  z-index: -1;
+}
+
+/* ===============================
+   WRAPPER
+================================ */
+
+.premium-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  animation: fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===============================
+   GLASS CARD
+================================ */
+
+.premium-card {
+  width: 460px;
+  padding: 60px 45px;
+  border-radius: 30px;
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.8),
+    0 0 1px rgba(255,255,255,0.2);
+  text-align: center;
+  transition: transform 0.4s ease;
+}
+
+.premium-card:hover {
+  transform: translateY(-6px);
+}
+
+/* ===============================
+   TOP SECTION
+================================ */
+
+.premium-badge {
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #a1a1a6;
+  margin-bottom: 10px;
+}
+
+.premium-top h1 {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 10px 0;
+}
+
+.price {
+  font-size: 46px;
+  font-weight: 700;
+  margin: 15px 0 5px;
+}
+
+.price span {
+  font-size: 18px;
+  font-weight: 400;
+  color: #8e8e93;
+}
+
+/* ===============================
+   DIVIDER
+================================ */
+
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 35px 0;
+}
+
+/* ===============================
+   FEATURES
+================================ */
+
+.premium-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.premium-features li {
+  margin: 18px 0;
+  font-size: 16px;
+  color: #d1d1d6;
+  transition: transform 0.3s;
+}
+
+.premium-features li:hover {
+  transform: translateX(6px);
+}
+
+/* ===============================
+   INPUT FIELD
+================================ */
+
+.activation-box input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: white;
+  margin-bottom: 18px;
+  transition: 0.3s;
+}
+
+.activation-box input:focus {
+  border: 1px solid #ffffff;
+}
+
+/* ===============================
+   BUTTON
+================================ */
+
+.activation-box button {
+  width: 100%;
+  padding: 16px;
+  border-radius: 20px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(145deg, #ffffff, #e5e5ea);
+  color: black;
+  transition: all 0.3s ease;
+}
+
+.activation-box button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px rgba(255,255,255,0.2);
+}
+
+/* ===============================
+   STATUS
+================================ */
+
+.subscription-status {
+  margin-top: 25px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #30d158;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 500px) {
+  .premium-card {
+    width: 92%;
+    padding: 45px 25px;
+  }
+
+  .price {
+    font-size: 36px;
+  }
+}
+
+/* ===============================
+   SUCCESS MODAL
+================================ */
+
+.success-modal {
+  position: fixed;
+  inset: 0;
+  display: none;              /* 🔥 MUST BE NONE */
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  z-index: 9999;
+}
+
+.success-content {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 40px 60px;
+  border-radius: 25px;
+  text-align: center;
+  animation: popUp 0.4s ease;
+  color: white;
+  box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+}
+
+.checkmark {
+  font-size: 50px;
+  color: #30d158;
+  margin-bottom: 15px;
+}
+
+@keyframes popUp {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ===============================
+   RAZORPAY PREMIUM BUTTON
+================================ */
+
+.razorpay-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #000;
+  background: linear-gradient(135deg, #ffd700, #ffb700);
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(255, 183, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.razorpay-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(255, 183, 0, 0.5);
+}
+
+.razorpay-btn:active {
+  transform: scale(0.97);
+}
+
+.lock-icon {
+  margin-right: 8px;
+}
+
+/* Ripple Effect */
+
+.razorpay-btn::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s ease, height 0.5s ease;
+  pointer-events: none;
+}
+
+.razorpay-btn:active::after {
+  width: 300px;
+  height: 300px;
+}

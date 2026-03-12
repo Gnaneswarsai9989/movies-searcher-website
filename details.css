@@ -1,0 +1,146 @@
+/* 🌌 Global */
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: black;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* 🔥 Topbar */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+
+.cinefy-logo {
+  font-size: 32px;
+  letter-spacing: 6px;
+}
+
+.cinefy-logo span {
+  color: red;
+  text-shadow: 0 0 25px red;
+}
+
+.back-btn {
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid red;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.back-btn:hover {
+  background: red;
+  box-shadow: 0 0 20px red;
+}
+
+/* 🎬 HERO */
+.details-hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  padding: 80px;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0.95), rgba(0,0,0,0.4));
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 60px;
+  align-items: center;
+  max-width: 1200px;
+}
+
+/* 🎥 Poster */
+.poster-box img {
+  width: 280px;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(255,0,0,0.5);
+  transition: 0.4s ease;
+}
+
+.poster-box img:hover {
+  transform: scale(1.05);
+}
+
+/* 🎬 Info */
+.info-box {
+  max-width: 600px;
+}
+
+.info-box h1 {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+.info-box p {
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.details-buttons {
+  margin-top: 25px;
+}
+
+.details-buttons button {
+  padding: 12px 25px;
+  font-size: 16px;
+  border-radius: 30px;
+  border: none;
+  background: linear-gradient(90deg, red, #ff4d4d);
+  color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.details-buttons button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 30px red;
+}
+
+/* 🔥 Curve */
+.curve-divider {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.curve-divider svg {
+  display: block;
+  width: 100%;
+  height: 80px;
+}
+
+/* 🎥 Trailer */
+.trailer-section {
+  padding: 60px;
+  display: none;
+  text-align: center;
+  background: black;
+}
+
+.trailer-section iframe {
+  width: 90%;
+  height: 500px;
+  border-radius: 20px;
+  box-shadow: 0 0 40px red;
+}

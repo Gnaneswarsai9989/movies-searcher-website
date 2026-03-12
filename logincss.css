@@ -1,0 +1,249 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #000;
+}
+
+/* Section Background */
+section {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+/* Animated Red Gradient */
+section::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(#000, red, #000);
+  animation: animate 5s linear infinite;
+}
+
+@keyframes animate {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Grid Boxes */
+section span {
+  position: relative;
+  display: block;
+  width: calc(6.25vw - 2px);
+  height: calc(6.25vw - 2px);
+  background: #111;
+  z-index: 2;
+  transition: 1.5s;
+}
+
+section span:hover {
+  background: red;
+  transition: 0s;
+}
+
+/* Login Box */
+.signin {
+  position: absolute;
+  width: 400px;
+  background: #1c1c1c;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 15px 35px rgba(255, 0, 0, 0.4);
+}
+
+.signin .content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+}
+
+/* ===== CINEFY LOGO ===== */
+
+
+/* Form */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.inputBox {
+  position: relative;
+  width: 100%;
+}
+
+.inputBox input {
+  width: 100%;
+  background: #333;
+  border: none;
+  outline: none;
+  padding: 20px 10px 6px;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1em;
+}
+
+.inputBox i {
+  position: absolute;
+  left: 10px;
+  top: 15px;
+  color: #aaa;
+  transition: 0.4s;
+  pointer-events: none;
+}
+
+/* Floating Label */
+.inputBox input:focus ~ i,
+.inputBox input:valid ~ i {
+  transform: translateY(-12px);
+  font-size: 0.75em;
+  color: red;
+}
+
+/* Links */
+.links {
+  display: flex;
+  justify-content: space-between;
+}
+
+.links a {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 0.9em;
+  transition: 0.3s;
+}
+
+.links a:hover {
+  color: red;
+}
+
+/* Buttons */
+.inputBox input[type="button"] {
+  padding: 12px;
+  background: red;
+  color: white;
+  font-weight: 600;
+  font-size: 1em;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.inputBox input[type="button"]:hover {
+  background: #cc0000;
+}
+
+/* Google Button */
+.google-btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 12px;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.google-btn:hover {
+  background: #ddd;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  section span {
+    width: calc(10vw - 2px);
+    height: calc(10vw - 2px);
+  }
+}
+
+@media (max-width: 600px) {
+  section span {
+    width: calc(20vw - 2px);
+    height: calc(20vw - 2px);
+  }
+
+  .signin {
+    width: 90%;
+    padding: 30px;
+  }
+}
+
+/* Logo Container */
+.logo-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;   /* left aligned like your design */
+  gap: 6px;                  /* clean small spacing */
+}
+
+/* Logo */
+.logo {
+  font-size: 2.6em;
+  font-weight: 700;
+  margin: 0 0 0 80px;
+  padding: 0;
+  color: white;
+  text-shadow:
+    0 0 6px red,
+    0 0 12px red,
+    0 0 20px red;
+}
+
+/* Underline */
+.logo-underline {
+  width:180px;
+  height: 2.5px;
+  margin: 0 0 0 60px;
+  background: linear-gradient(10deg, transparent, red, transparent);
+}
+
+/* Tagline */
+.logo-tagline {
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: #bbb;
+  margin: 0 0 10px 80px;
+}
+
+
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;              /* space between icon and text */
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.google-icon {
+    width: 18px;           /* small icon size */
+    height: 18px;
+    object-fit: contain;
+}

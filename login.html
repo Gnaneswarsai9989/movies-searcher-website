@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cinefy Login</title>
+  <link rel="stylesheet" href="logincss.css">
+</head>
+
+<body>
+
+<section id="bgSection">
+  
+  <!-- Background Boxes Auto Generate -->
+  <script>
+    const section = document.getElementById("bgSection");
+    for (let i = 0; i < 400; i++) {
+      const span = document.createElement("span");
+      section.appendChild(span);
+    }
+  </script>
+
+  <!-- Login Box -->
+  <div class="signin">
+    <div class="content">
+      
+<div class="logo-box">
+  <h2 class="logo">CINEFY</h2>
+  <div class="logo-underline"></div>
+  <p class="logo-tagline">FEEL THE MOVIE</p>
+</div>
+      <div class="form">
+
+        <!-- Email -->
+        <div class="inputBox">
+          <input type="email" id="email" required>
+          <i>Email</i>
+        </div>
+
+        <!-- Password -->
+        <div class="inputBox">
+          <input type="password" id="password" required>
+          <i>Password</i>
+        </div>
+
+        <!-- Links -->
+        <div class="links">
+          <a href="#" id="showSignup">Create Account</a>
+          <a href="#" id="showLogin" style="display:none;">Already have account?</a>
+        </div>
+
+        <!-- Login Button -->
+        <div class="inputBox">
+          <input type="button" id="loginBtn" value="Login">
+        </div>
+
+        <!-- Signup Button -->
+        <div class="inputBox" id="signupContainer" style="display:none;">
+          <input type="button" id="signupBtn" value="Sign Up">
+        </div>
+
+        <!-- Google Login -->
+        <button id="googleLogin" class="google-btn">
+    <img src="googleicon.jpg" class="google-icon">
+    Continue with Google
+</button>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  // Toggle Login & Signup
+  const showSignup = document.getElementById("showSignup");
+  const showLogin = document.getElementById("showLogin");
+  const loginBtn = document.getElementById("loginBtn");
+  const signupContainer = document.getElementById("signupContainer");
+
+  showSignup.addEventListener("click", () => {
+    loginBtn.style.display = "none";
+    signupContainer.style.display = "block";
+    showSignup.style.display = "none";
+    showLogin.style.display = "inline";
+  });
+
+  showLogin.addEventListener("click", () => {
+    loginBtn.style.display = "block";
+    signupContainer.style.display = "none";
+    showSignup.style.display = "inline";
+    showLogin.style.display = "none";
+  });
+</script>
+
+<script type="module" src="auth.js"></script>
+
+</body>
+</html>

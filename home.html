@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Cinefy | Feel the Movie</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ✅ AUTH PROTECTION (ONLY ONCE) -->
+<script type="module">
+import { auth } from "./firebase.js";
+import { onAuthStateChanged } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.href = "index.html";
+  }
+});
+</script>
+
+<!-- 🔝 Header -->
+<header class="main-header">
+  <div class="hero-logo">
+    <h1 class="cinefy-logo">
+      CINE<span>FY</span>
+    </h1>
+
+    <div class="logo-underline"></div>
+    <p class="logo-tagline">Feel the Movie</p>
+  </div>
+
+  <nav class="nav-links">
+  <a href="home.html" class="active">Home</a>
+  <a href="movies.html">Movies</a>
+  <a href="watchlist.html">Watchlist</a>
+</nav>
+
+<div class="profile-wrapper">
+  <div class="profile-icon" id="profileBtn">👤</div>
+</div>
+</header>
+
+<!-- 🎬 Cinematic Hero Section -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+
+    <h1 class="hero-title">
+      Welcome to <span class="cinefy-logo">CINE<span class="fy">FY</span></span>
+    </h1>
+
+    <p class="hero-subtitle">Discover. Explore. Experience Cinema.</p>
+
+    <div class="hero-divider"></div>
+
+  <div class="search-wrapper">
+  <span class="search-icon">🔍</span>
+  <input type="text" id="searchInput" placeholder="Search movies...">
+  <span id="clearSearch" class="clear-btn"></span>
+</div>
+<div class="subscription-cta">
+  <a href="subscription.html" class="subscribe-btn">
+    Upgrade to Premium →
+  </a>
+</div>
+  </div>
+</section>
+<!-- 🎬 CINEMATIC PLAYER -->
+<!-- 🎬 CINEMATIC PLAYER -->
+<section class="cinema-player" id="videoSection">
+  <div class="cinema-overlay"></div>
+
+  <div class="cinema-content">
+
+    <div class="video-info">
+      <h2 id="trailerTitle"></h2>
+      <span class="rating-badge" id="trailerRating"></span>
+      <button class="watchlist-btn" id="watchlistBtn">+ Watchlist</button>
+    </div>
+
+    <span class="close-video" id="closeVideo">✕</span>
+
+    <iframe 
+      id="fullTrailerFrame"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+
+  </div>
+</section>
+
+<div class="curve-divider">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path d="M0,40 C480,70 960,70 1440,40 L1440,120 L0,120 Z"></path>
+  </svg>
+</div>
+
+<!-- 🎥 Movie Section -->
+<section class="movies-section">
+<div class="latest-section">
+
+  <div class="latest-header">
+
+    <span class="live-dot"></span>
+
+    <span class="latest-badge">LATEST</span>
+
+    <h3 class="latest-title">
+      TRENDING MOVIES
+      <span class="glow-underline"></span>
+    </h3>
+
+  </div>
+
+  <!-- 🎭 Genre Filters -->
+ <div class="genre-filters">
+
+  <button class="genre-btn active" data-genre="All">🎬 All</button>
+
+  <button class="genre-btn" data-genre="Action">🔥 Action</button>
+  <button class="genre-btn" data-genre="Thriller">😱 Thriller</button>
+  <button class="genre-btn" data-genre="Entertainment">🎉 Entertainment</button>
+  <button class="genre-btn" data-genre="Drama">🎭 Drama</button>
+  <button class="genre-btn" data-genre="Sci-Fi">🚀 Sci-Fi</button>
+  <button class="genre-btn" data-genre="Romance">🌹 Romance</button>
+  <button class="genre-btn" data-genre="Comedy">😂 Comedy</button>
+  <button class="genre-btn" data-genre="Family">👨‍👩‍👧‍👦 Family</button>
+  <button class="genre-btn" data-genre="Animation">🎨 Animation</button>
+  <button class="genre-btn" data-genre="Adventure">🧭 Adventure</button>
+  <button class="genre-btn" data-genre="Biography">📖 Biography</button>
+  <button class="genre-btn" data-genre="Mystery">🕵️ Mystery</button>
+  <button class="genre-btn" data-genre="Crime">🚔 Crime</button>
+  <button class="genre-btn" data-genre="War">⚔️ War</button>
+  <button class="genre-btn" data-genre="Love">❤️ Love</button>
+
+</div>
+
+</div>
+
+</div>
+  <div id="movieGrid" class="movie-grid"></div>
+</section>
+
+<div class="curve-divider">
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+    <path d="M0,50 L1440,50 L1440,100 L0,100 Z"></path>
+  </svg>
+</div>
+<!-- 🎬 TRAILER MODAL -->
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+
+    <div class="footer-section">
+      <h3>CINEFY</h3>
+      <p>Your ultimate movie discovery platform.</p>
+      <p>Experience cinema like never before.</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Contact</h4>
+      <p>Email: gnaneswarsai9989@gmail.com</p>
+      <p>Business: contact@cinefy.com</p>
+      <p>Phone: +91 63040 00624</p>
+      <p>Location: India</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <p>Home</p>
+      <p>Movies</p>
+      <p>Recommendations</p>
+      <p>Trending</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Legal</h4>
+      <p>Privacy Policy</p>
+      <p>Terms & Conditions</p>
+      <p>Disclaimer</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Cinefy | Created by Gnaneswar Sai
+  </div>
+</footer>
+<audio id="welcomeAudio" preload="auto">
+  <source src="welcome.mp3" type="audio/mpeg">
+</audio>
+<script type="module" src="app.js"></script>
+<script src="intro.js"></script>
+<!-- 🔥 PROFILE SIDE PANEL -->
+<div class="profile-panel" id="profilePanel">
+  <div class="profile-header">
+  <div class="profile-user">
+<img id="profileAvatar" class="profile-avatar-img" src="default-avatar.png"> 
+
+
+ <h3 id="profileName">User</h3> </div>
+
+ 
+  <span id="closeProfile">✖</span>
+</div>
+
+  <div class="profile-options">
+    <button id="switchAccount">Login To Another Account</button>
+    <button id="logoutBtn">Logout</button>
+    <button id="helpBtn">Help</button>
+  </div>
+
+  <div class="recommend-box">
+  <h4>Share Your Recommendations</h4>
+  <p class="recommend-subtext">
+    Loved something amazing? Tell us what’s Good, Excellent, or Must-Watch!
+  </p>
+
+  <div class="quick-tags">
+    <span class="tag">🔥 Must Watch</span>
+    <span class="tag">⭐ Excellent</span>
+    <span class="tag">👍 Good Story</span>
+    <span class="tag">🎭 Great Acting</span>
+  </div>
+
+  <textarea id="userSuggestion"
+    placeholder="Example: The action scenes were excellent and the rating is 9/10...">
+  </textarea>
+
+  <button id="sendSuggestion">Submit Recommendation</button>
+</div>
+</div>
+</body>
+</html>

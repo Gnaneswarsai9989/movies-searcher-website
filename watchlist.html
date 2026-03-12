@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cinefy | My Watchlist</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      background: linear-gradient(to bottom, #000000, #111111);
+      color: white;
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+    }
+
+    .watchlist-header {
+      text-align: center;
+      padding: 60px 20px 30px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.9), rgba(0,0,0,0.4));
+      backdrop-filter: blur(12px);
+    }
+
+   
+
+    .watchlist-subtitle {
+      margin-top: 10px;
+      opacity: 0.7;
+      font-size: 16px;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 8px 20px;
+      background: red;
+      border-radius: 20px;
+      text-decoration: none;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background: darkred;
+    }
+
+    .page-container {
+      width: 90%;
+      max-width: 1400px;
+      margin: 80px auto 120px auto;
+      padding: 40px;
+      background: rgba(20, 20, 20, 0.7);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+    }
+
+    .movie-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .movie-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: 0.5s ease;
+      transform-style: preserve-3d;
+    }
+
+    .movie-card img {
+      width: 100%;
+      border-radius: 20px;
+      transition: transform 0.6s ease, box-shadow 0.6s ease;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    }
+
+    .movie-card:hover img {
+      transform: scale(1.08) rotateX(5deg);
+      box-shadow: 0 30px 60px rgba(255,0,0,0.35);
+    }
+
+    .movie-card::after {
+      content: "";
+      position: absolute;
+      top: -100%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        120deg,
+        transparent 40%,
+        rgba(255,255,255,0.1) 50%,
+        transparent 60%
+      );
+      transform: rotate(25deg);
+      transition: 0.8s;
+    }
+
+    .movie-card:hover::after {
+      top: 100%;
+    }
+
+    .movie-info {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      opacity: 0;
+      transition: 0.4s ease;
+    }
+
+    .movie-card:hover .movie-info {
+      opacity: 1;
+    }
+
+    .remove-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255,0,0,0.9);
+      border: none;
+      color: white;
+      padding: 6px 8px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: none;
+    }
+
+    .movie-card:hover .remove-btn {
+      display: block;
+    }
+
+    .progress-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 5px;
+      background: red;
+      width: 35%;
+    }
+
+    .empty-state {
+      text-align: center;
+      margin-top: 60px;
+      opacity: 0.6;
+      font-size: 18px;
+    }
+
+    .recommend-section {
+      margin-top: 100px;
+      padding: 40px;
+      border-radius: 16px;
+      background: linear-gradient(to right, rgba(40,0,0,0.4), rgba(0,0,0,0.6));
+      box-shadow: inset 0 0 60px rgba(255,0,0,0.08);
+    }
+
+    .recommend-section h2 {
+      font-size: 34px;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #ff0000, #ff6a00);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .recommend-section p {
+      opacity: 0.7;
+      margin-bottom: 30px;
+    }
+
+    .recommend-row {
+      display: flex;
+      gap: 25px;
+      overflow-x: auto;
+    }
+
+    .recommend-row img {
+      width: 200px;
+      border-radius: 15px;
+      transition: 0.4s;
+      cursor: pointer;
+    }
+
+    .recommend-row img:hover {
+      transform: scale(1.12);
+      box-shadow: 0 15px 40px rgba(255,0,0,0.4);
+    }
+
+    .cinema-player {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.9);
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .cinema-player.active {
+      opacity: 1;
+    }
+
+    .cinema-content {
+      width: 80%;
+      max-width: 1000px;
+      position: relative;
+    }
+
+    iframe {
+      width: 100%;
+      height: 500px;
+      border-radius: 12px;
+    }
+
+    .close-video {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+/* 🎬 Curved Divider */
+.curve-divider {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.curve-divider svg {
+  display: block;
+  width: 100%;
+  height: 100px;
+}
+
+.curve-divider path {
+  fill: #000000;
+ 
+  filter: drop-shadow(0 -15px 13px rgba(255, 0, 0, 0.25));
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 10px;
+    margin-top: 5px;
+    color:aliceblue
+
+}
+
+.hero-title span {
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 20px red;
+}
+
+
+.logo-underline {
+  width: 700px;
+  height: 2.5px;
+  margin: 15px 2px 7px 400px;
+  background: linear-gradient(90deg, transparent, red, transparent);
+}
+.logo-tagline {
+  margin: 10px  0px 0px 20px;
+  font-family:sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #e0e0e0;
+  opacity: 0.9;
+}
+.cinefy-logo {
+    text-shadow: #ff0000 0px 0px 10px, #ff0000 0px 0px 20px, #ff0000 0px 0px 30px;
+    font-size: 36px;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(90deg, #ff0000, #ff6a00);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+
+
+footer {
+  background: #000;
+  color: #aaa;
+  padding: 50px 60px 20px;
+  font-size: 14px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.footer-section h3,
+.footer-section h4 {
+  color: white;
+  margin-bottom: 15px;
+}
+
+.footer-section p {
+  margin: 6px 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-section p:hover {
+  color: rgb(255, 255, 255);
+}
+
+.footer-bottom {
+  border-top: 1px solid #222;
+  padding-top: 15px;
+  text-align: center;
+  color: #777;
+}
+.cineefy-logo {
+  font-size: 42px;
+  letter-spacing: 6px;
+  margin: 0;
+  color: white;
+  justify-self: start;   /* 🔥 Push to left */
+  align-self: center;
+}
+
+/* Red glowing FY */
+.cineefy-logo span {
+  color: red;
+  text-shadow: 0 0 50px red;
+  animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+.logo-underrline {
+  width: 180px;
+  height: 2.5px;
+  margin-top: 7px;
+  background: linear-gradient(90deg, transparent, red, transparent);
+}
+
+/* Tagline */
+/* Tagline */
+
+
+
+/* Tagline below logo */
+
+
+/* Optional subtle fade animation */
+.logo-taggline {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: taglineFade 1.5s ease forwards;
+  animation-delay: 0.8s;
+}
+
+@keyframes tagglineFade {
+  to {
+    opacity: 0.8;
+    transform: translateY(0);
+  }
+}
+
+  </style>
+</head>
+
+<body>
+
+<div class="watchlist-header">
+  <div class="hero-logo">
+    <h1 class="cineefy-logo">
+      CINE<span>FY</span>
+    </h1>
+
+    <div class="logo-underrline"></div>
+  </div>
+<div class="hero-logo">
+    <h1 class="cinefy-logo">
+      MY WATCHLIST
+    </h1>
+
+    <div class="logo-underline"></div>
+    <p class="logo-tagline">Your saved cinematic universe ❤️</p>
+  </div>
+
+  <a href="home.html" class="back-btn">← Back to Home</a>
+</div>
+<div class="curve-divider">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path d="M0,40 C480,70 960,70 1440,40 L1440,120 L0,120 Z"></path>
+  </svg>
+</div>
+
+<div class="page-container">
+
+  <div id="emptyState" class="empty-state" style="display:none;">
+    Your watchlist is empty 🎬
+  </div>
+
+  <div id="watchlistGrid" class="movie-grid"></div>
+
+  <div class="recommend-section">
+    <h2>Recommended For You</h2>
+    <p>Because you love cinematic experiences 🎬</p>
+    <div class="recommend-row" id="recommendRow"></div>
+  </div>
+
+</div>
+
+<section class="cinema-player" id="videoSection">
+  <div class="cinema-content">
+    <span class="close-video" id="closeVideo">✕</span>
+    <iframe id="fullTrailerFrame" allowfullscreen></iframe>
+  </div>
+</section>
+<footer>
+  <div class="footer-container">
+
+    <div class="footer-section">
+      <h3>CINEFY</h3>
+      <p>Your ultimate movie discovery platform.</p>
+      <p>Experience cinema like never before.</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Contact</h4>
+      <p>Email: gnaneswarsai9989@gmail.com</p>
+      <p>Business: contact@cinefy.com</p>
+      <p>Phone: +91 63040 00624</p>
+      <p>Location: India</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <p>Home</p>
+      <p>Movies</p>
+      <p>Recommendations</p>
+      <p>Trending</p>
+    </div>
+
+    <div class="footer-section">
+      <h4>Legal</h4>
+      <p>Privacy Policy</p>
+      <p>Terms & Conditions</p>
+      <p>Disclaimer</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 Cinefy | Created by Gnaneswar Sai
+  </div>
+</footer>
+
+<script type="module">
+
+import { db, auth } from "./firebase.js";
+import { collection, getDocs, deleteDoc, doc, getDoc} 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { onAuthStateChanged } 
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const grid = document.getElementById("watchlistGrid");
+const emptyState = document.getElementById("emptyState");
+const recommendRow = document.getElementById("recommendRow");
+
+onAuthStateChanged(auth, async (user) => {
+
+  if (!user) {
+    window.location.href = "index.html";
+    return;
+  }
+
+  const snapshot = await getDocs(
+    collection(db, "users", user.uid, "watchlist")
+  );
+
+  if (snapshot.empty) {
+    emptyState.style.display = "block";
+  }
+
+  snapshot.forEach((docSnap) => {
+
+    const movie = docSnap.data();
+    const movieId = docSnap.id;
+
+    const card = document.createElement("div");
+    card.classList.add("movie-card");
+
+    card.innerHTML = `
+      <img src="${movie.poster}">
+      <button class="remove-btn">✕</button>
+      <div class="progress-bar"></div>
+      <div class="movie-info"><h4>${movie.title}</h4></div>
+    `;
+
+    card.querySelector(".remove-btn").onclick = async (e) => {
+      e.stopPropagation();
+      await deleteDoc(
+        doc(db, "users", user.uid, "watchlist", movieId)
+      );
+      card.remove();
+    };
+
+    card.addEventListener("click", () => {
+      if (movie.trailer) {
+        openTrailer(movie.trailer);
+      }
+    });
+
+    grid.appendChild(card);
+  });
+
+  loadRecommendations();
+});
+
+async function loadRecommendations() {
+
+  const snapshot = await getDocs(collection(db, "movies"));
+  recommendRow.innerHTML = "";
+
+  snapshot.forEach(docSnap => {
+
+    const movie = docSnap.data();
+
+    const img = document.createElement("img");
+    img.src = movie.poster;
+
+    img.addEventListener("click", () => {
+      if (movie.video) {
+        openTrailer(movie.video);
+      }
+    });
+
+    recommendRow.appendChild(img);
+  });
+}
+async function openTrailer(videoUrl) {
+    const user = auth.currentUser;
+
+  if (!user) {
+    alert("Login first 🔐");
+    return;
+  }
+
+  const userSnap = await getDoc(doc(db, "users", user.uid));
+
+  if (!userSnap.exists() || !userSnap.data().isSubscribed) {
+    alert("🔒 Cinefy Premium required");
+    return;
+  }
+
+  let videoId = "";
+
+  if (videoUrl.includes("watch?v=")) {
+    videoId = videoUrl.split("v=")[1].split("&")[0];
+  } else if (videoUrl.includes("youtu.be/")) {
+    videoId = videoUrl.split("youtu.be/")[1].split("?")[0];
+  }
+
+  const videoSection = document.getElementById("videoSection");
+  const frame = document.getElementById("fullTrailerFrame");
+
+  frame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+  videoSection.style.display = "flex";
+
+  setTimeout(() => {
+    videoSection.classList.add("active");
+  }, 10);
+}
+
+document.getElementById("closeVideo").onclick = () => {
+
+  const videoSection = document.getElementById("videoSection");
+  const frame = document.getElementById("fullTrailerFrame");
+
+  videoSection.classList.remove("active");
+
+  setTimeout(() => {
+    videoSection.style.display = "none";
+    frame.src = "";
+  }, 400);
+};
+
+</script>
+
+</body>
+</html>

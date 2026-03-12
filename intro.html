@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CINEFY Intro</title>
+  <link rel="stylesheet" href="intro.css">
+</head>
+<body class="intro-body">
+
+<audio id="boomSound" src="boom.mp3"></audio>
+
+<div class="intro-container">
+
+  <h1 class="intro-logo">
+    CINE<span>FY</span>
+  </h1>
+
+  <div class="intro-line"></div>
+
+  <p class="intro-quote">
+    FEEL THE MOVIE
+  </p>
+
+</div>
+
+<div class="particles"></div>
+
+<script>
+  // Play boom sound
+  
+  const container = document.querySelector(".particles");
+
+  for (let i = 0; i < 120; i++) {
+    const particle = document.createElement("span");
+
+    particle.style.left = Math.random() * 100 + "vw";
+    particle.style.animationDuration = (3 + Math.random() * 5) + "s";
+    particle.style.animationDelay = Math.random() * 5 + "s";
+
+    container.appendChild(particle);
+  }
+
+  window.onload = function () {
+    const sound = document.getElementById("boomSound");
+    sound.volume = 0.6;
+    sound.play();
+  };
+
+  // Redirect after 5 seconds
+  setTimeout(() => {
+    document.querySelector(".intro-container").classList.add("zoom-out");
+    setTimeout(() => {
+      window.location.href = "home.html";
+    }, 1000);
+  }, 4000);
+</script>
+
+</body>
+</html>

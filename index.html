@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CINEFY</title>
+  <link rel="stylesheet" href="1style.css">
+</head>
+
+<body>
+
+<div class="hero-section">
+
+  <div class="logo-box">
+    <h1 class="logo">CINE<span class="fy">FY</span></h1>
+    <div class="logo-underline"></div>
+    <p class="logo-tagline">FEEL THE MOVIE</p>
+  </div>
+
+  <div class="poster-rotator">
+    <div class="poster">
+      <img src="poster1.jpg">
+    </div>
+    <div class="poster">
+      <img src="poster2.jpg">
+    </div>
+    <div class="poster">
+      <img src="poster3.jpg">
+    </div>
+    <div class="poster">
+      <img src="poster4.jpg">
+    </div>
+    <div class="poster">
+      <img src="poster5.jpg">
+    </div>
+  </div>
+
+  <p class="hero-quote">
+    "CINEMA IS NOT JUST ENTERTAINMENT, IT'S EMOTION."
+  </p>
+
+  <a href="login.html">
+<button class="enter-btn" onclick="goToLogin(event)">
+  Start Watching <span class="arrow">➜</span>
+</button>
+</div>
+<script>
+function goToLogin(event) {
+
+  const button = event.currentTarget;
+
+  // Create ripple
+  const circle = document.createElement("span");
+  const diameter = Math.max(button.clientWidth, button.clientHeight);
+  const radius = diameter / 2;
+
+  circle.style.width = circle.style.height = `${diameter}px`;
+  circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+  circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+  circle.style.position = "absolute";
+  circle.style.background = "rgba(255,255,255,0.4)";
+  circle.style.borderRadius = "50%";
+  circle.style.transform = "scale(0)";
+  circle.style.animation = "ripple 0.6s linear";
+  circle.style.pointerEvents = "none";
+
+  button.appendChild(circle);
+
+  setTimeout(() => {
+    document.body.classList.add("fade-out");
+  }, 200);
+
+  setTimeout(() => {
+    window.location.href = "login.html";
+  }, 800);
+}
+</script>
+</body>
+</html>

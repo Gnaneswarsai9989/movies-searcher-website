@@ -1,0 +1,628 @@
+/* ===============================
+   GLOBAL
+================================ */
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background: #0b0b0b;
+  color: white;
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+/* ===============================
+   HEADER
+================================ */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 60px;
+  background: #000;
+}
+
+/* Logo */
+.cinefy-logo {
+  font-size: 34px;
+  letter-spacing: 6px;
+}
+
+.cinefy-logo span {
+  color: red;
+  text-shadow: 0 0 20px red;
+}
+
+.tagline {
+  font-size: 11px;
+  letter-spacing: 2px;
+  opacity: 0.6;
+  margin: 5px 0 0 20px;
+}
+
+/* Navigation */
+.nav-links {
+  display: flex;
+  gap: 40px;
+  justify-self: center;
+}
+
+.nav-links a {
+  font-size: 20px;
+  color: white;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 5px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* 🔥 White glow on hover */
+
+
+/* ✨ Stylish animated line */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(to right, rgb(223, 6, 6), rgb(186, 79, 79));
+  transition: 0.3s ease;
+  transform: translateX(-50%);
+}
+
+/* Animate line on hover */
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ===============================
+   BIG SEARCH
+================================ */
+
+.search-wrapper input {
+  width: 280px;
+  padding: 12px 25px;
+  border-radius: 40px;
+  border: none;
+  background: #1c1c1c;
+  color: white;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.search-wrapper input:focus {
+  outline: none;
+  width: 340px;
+  box-shadow: 0 0 15px red;
+}
+
+/* ===============================
+   RED CURVE LINE
+================================ */
+
+.header-curve {
+  height: 35px;
+  background: linear-gradient(to right, transparent, red, transparent);
+  border-radius: 0 0 50% 50%;
+  filter: blur(6px);
+}
+
+/* ===============================
+   EXPLORE SECTION
+================================ */
+
+.explore-section {
+  text-align: center;
+  padding: 50px 20px 20px 20px;
+}
+
+.explore-title {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.explore-title span {
+  color: red;
+  text-shadow: 0 0 20px red;
+}
+
+.title-underline {
+  width: 120px;
+  height: 3px;
+  margin: 15px auto 40px auto;
+  background: linear-gradient(to right, transparent, red, transparent);
+  border-radius: 50px;
+}
+
+/* ===============================
+   GENRE BUTTONS
+================================ */
+
+.genre-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto 50px auto;
+}
+
+.genre-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 50px;
+  border: 1px solid rgba(255,0,0,0.4);
+  background: #111;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.genre-btn:hover {
+  background: rgba(255,0,0,0.1);
+  box-shadow: 0 0 15px rgba(255,0,0,0.6);
+  transform: translateY(-3px);
+}
+
+.genre-btn.active {
+  background: linear-gradient(135deg, #ff0000, #990000);
+  border: none;
+  box-shadow: 0 0 20px red;
+}
+
+/* ===============================
+   MAIN LAYOUT
+================================ */
+
+.movies-layout {
+  display: flex;
+  margin-top: 20px;
+}
+
+/* ===============================
+   STYLISH SIDEBAR
+================================ */
+
+.sidebar {
+  width: 240px;
+  padding: 50px 30px;
+  position: sticky;
+  top: 120px;
+  height: fit-content;
+
+  background: linear-gradient(180deg, #111, #0d0d0d);
+  border-radius: 0 60px 60px 0;
+  border-right: 3px solid red;
+  box-shadow: 0 0 30px rgba(255,0,0,0.2);
+}
+
+/* Sidebar Headings */
+.sidebar h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 40px;
+  margin-bottom: 15px;
+  color: white;
+  position: relative;
+}
+
+.sidebar h3::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: red;
+  margin-top: 8px;
+  border-radius: 10px;
+}
+.sidebar button {
+  width: 100%;
+  padding: 10px 0;
+  margin: 8px 0;
+  background: transparent;
+  border: none;
+  color: #bbb;
+  text-align: left;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.sidebar button:hover {
+  color: white;
+  padding-left: 10px;
+}
+
+.sidebar button.active {
+  color: red;
+  font-weight: 600;
+}
+
+/* ===============================
+   MOVIES CONTENT
+================================ */
+
+.movies-content {
+  flex: 1;
+  padding: 0 60px;
+}
+
+.page-title {
+  font-size: 34px;
+  margin-bottom: 30px;
+}
+
+/* ===============================
+   MOVIE GRID FIXED SIZE
+================================ */
+/* ===============================
+   MOVIE GRID - 4 PER ROW
+================================ */
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);   /* 4 posters per row */
+  gap: 25px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===============================
+   MOVIE CARD
+================================ */
+
+.movie-card {
+  position: relative;
+  padding: 8px;                /* smaller gap */
+  border-radius: 18px;
+  background: #0f0f0f;
+  transition: 0.4s ease;
+  overflow: hidden;
+}
+
+/* 🔥 Lighting Border */
+.movie-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(
+    45deg,
+    rgba(255,0,0,0.7),
+    transparent,
+    rgba(255,0,0,0.6)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: 0.4s ease;
+}
+
+/* 🔥 Hover Glow */
+.movie-card:hover::before {
+  opacity: 1;
+  filter: drop-shadow(0 0 12px rgba(255,0,0,0.6));
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+/* ===============================
+   POSTER IMAGE (FIXED SIZE)
+================================ */
+
+.movie-card img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 2 / 3;   /* forces same height */
+  object-fit: cover;
+  border-radius: 14px;
+}
+
+/* ===============================
+   LATEST BADGE
+================================ */
+
+.latest-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: red;
+  color: white;
+  padding: 3px 8px;
+  font-size: 9px;
+  border-radius: 4px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  z-index: 10;
+}
+
+/* ===============================
+   OVERLAY INFO
+================================ */
+
+.movie-overlay-info {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+  padding: 10px 8px 8px 8px;
+  border-radius: 0 0 14px 14px;
+}
+
+/* 🎬 Title */
+.movie-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* 🎭 Genre */
+.movie-genre {
+  font-size: 11px;
+  opacity: 0.7;
+  margin: 2px 0;
+}
+
+/* ⭐ Rating */
+.movie-rating {
+  font-size: 11px;
+  background: rgba(255,0,0,0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 1100px) {
+  .movie-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 800px) {
+  .movie-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .movie-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+/* ===============================
+   PAGINATION
+================================ */
+/* ===============================
+   SINGLE NEXT BUTTON
+================================ */
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  margin: 60px 80px 40px 0;
+}
+
+.next-btn {
+  padding: 12px 30px;
+  border-radius: 40px;
+  border: none;
+  background: linear-gradient(135deg, #ff0000, #990000);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.next-btn:hover {
+  transform: translateX(5px);
+  box-shadow: 0 0 20px red;
+}
+
+/* 🔥 Smooth Fade Animation */
+.movie-grid {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.movie-grid.fade-out {
+  opacity: 0;
+  transform: scale(0.98);
+}
+
+.movie-grid.fade-in {
+  opacity: 1;
+  transform: scale(1);
+}
+/* 🔥 SHIMMER LOADER */
+.shimmer-card {
+  width: 100%;
+  aspect-ratio: 2/3;
+  border-radius: 18px;
+  background: linear-gradient(
+    90deg,
+    #111 25%,
+    #1a1a1a 50%,
+    #111 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* 🔥 Professional Footer */
+
+footer {
+  background: #000;
+  color: #aaa;
+  padding: 50px 60px 20px;
+  font-size: 14px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.footer-section h3,
+.footer-section h4 {
+  color: white;
+  margin-bottom: 15px;
+}
+
+.footer-section p {
+  margin: 6px 0;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-section p:hover {
+  color: rgb(255, 255, 255);
+}
+
+.footer-bottom {
+  border-top: 1px solid #222;
+  padding-top: 15px;
+  text-align: center;
+  color: #777;
+}
+
+
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin: 60px 80px 40px 0;
+}
+
+.page-btn {
+  padding: 10px 25px;
+  border-radius: 40px;
+  border: none;
+  background: linear-gradient(135deg, #ff0000, #990000);
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.page-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 15px red;
+}
+
+/* ===============================
+   STAR RATING BUTTONS
+================================ */
+
+.rating-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background: transparent;
+  border: none;
+  font-size: 18px;
+  color: #bbb;
+  cursor: pointer;
+  padding: 6px 0;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.rating-btn:hover {
+  color: gold;
+  transform: translateX(6px);
+}
+
+/* Active state */
+.rating-btn.active {
+  color: gold;
+  font-weight: 600;
+  text-shadow: 0 0 8px rgba(255, 215, 0, 0.6);
+}
+
+/* Small (5+ / 4+ / 3+) text */
+.rating-btn span {
+  font-size: 12px;
+  color: #888;
+  margin-left: 4px;
+  transition: 0.3s ease;
+}
+
+/* Active count text */
+.rating-btn.active span {
+  color: #ccc;
+}
+
+.logo-underline {
+  width: 150px;
+  height: 2.5px;
+  margin: 2px 0 2px 0;
+  background: linear-gradient(90deg, transparent, red, transparent);
+}
+
+.poster-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.poster-img {
+  width: 100%;
+  display: block;
+}
+
+.movie-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  opacity: 0;
+  transition: 0.3s ease;
+}
+
+.movie-card:hover .movie-overlay {
+  opacity: 1;
+}
+
+.watchlist-btn {
+  padding: 6px 14px;
+  background: #e50914;
+  border: none;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+}

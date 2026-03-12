@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cinefy | Movie Details</title>
+  <link rel="stylesheet" href="details.css">
+</head>
+<body>
+
+<header class="topbar">
+  <h1 class="cinefy-logo">CINE<span>FY</span></h1>
+  <button id="backBtn" class="back-btn">⬅ Back</button>
+</header>
+
+<!-- 🎬 HERO SECTION -->
+<section class="details-hero" id="detailsHero">
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="poster-box">
+      <img id="moviePoster" />
+    </div>
+
+    <div class="info-box">
+      <h1 id="movieTitle"></h1>
+      <p id="movieMeta"></p>
+      <p id="movieDescription"></p>
+
+      <div class="details-buttons">
+        <button id="playTrailer">▶ Play Trailer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stylish Curve -->
+  <div class="curve-divider">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path 
+        d="M0,40 C480,90 960,90 1440,40 L1440,120 L0,120 Z"
+        fill="rgba(255,0,0,0.8)">
+      </path>
+    </svg>
+  </div>
+</section>
+
+<!-- 🎥 Trailer Section -->
+<section class="trailer-section" id="trailerSection">
+  <iframe id="trailerFrame" allowfullscreen></iframe>
+</section>
+
+<script type="module" src="details.js"></script>
+</body>
+</html>

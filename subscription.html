@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Cinefy | Premium Subscription</title>
+  <link rel="stylesheet" href="subscription.css">
+</head>
+<body style="background:black; color:white; text-align:center; padding-top:80px;">
+
+
+<div class="premium-wrapper">
+
+  <div class="premium-card">
+
+    <div class="premium-top">
+      <div class="premium-badge">Cinefy Premium</div>
+      <h1>Upgrade Your Experience</h1>
+      <p class="price">₹10 <span>/ month</span></p>
+    </div>
+
+    <div class="divider"></div>
+
+    <ul class="premium-features">
+      <li>✓ Unlimited Movie Access</li>
+      <li>✓ No Locked Content</li>
+      <li>✓ Early Access to Trending</li>
+      <li>✓ Premium Badge</li>
+    </ul>
+
+    <div class="divider"></div>
+
+    <div class="activation-box">
+      <input type="text" id="secretCode" placeholder="Enter Secret Code">
+      <button id="activateBtn">Activate Premium</button>
+    </div>
+<button id="razorpayBtn" class="razorpay-btn">
+  <span class="lock-icon">🔒</span>
+  Pay ₹10 Securely
+</button>
+    <div id="subscriptionStatus" class="subscription-status"></div>
+
+  </div>
+</div>
+
+<!-- Success Modal -->
+<div id="successModal" class="success-modal">
+  <div class="success-content">
+    <div class="checkmark">✓</div>
+    <h2>Premium Activated</h2>
+    <p>Welcome to Cinefy Premium</p>
+  </div>
+</div>
+
+<script type="module" src="subscription.js"></script>
+
+
+
+  <p id="message" style="margin-top:20px;"></p>
+</div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script type="module" src="subscription.js"></script>
+
+
+</body>
+
+</html>
